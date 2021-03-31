@@ -1,0 +1,112 @@
+.nav-link.active.text-white {
+	background-color: #2297D8 !important;
+}
+
+.nav-link.text-white:hover {
+	background-color: #2297D8;
+}
+
+.nav-link.active.px-5 {
+	background-color: #1176AE !important;
+}
+
+.nav-tabs {
+	border-bottom: 2px solid #1176AE;
+}
+
+hr {
+	border-top: 2px solid #707070;
+}
+
+.table-condensed thead tr:nth-child(2),
+.table-condensed tbody {
+  display: none
+}
+
+.form-btn-save {
+    font-size: 15px;
+    color: white;
+    width: 15%;
+    border-radius: 50px;
+    border: 2px solid #1176AE;
+    background-color: #1176AE;
+}
+
+.form-btn-save:hover {
+    font-size: 15px;
+    color: white;
+    width: 15%;
+    border-radius: 50px;
+    border: 2px solid #1176AE;
+    background-color: #1176AE;
+    box-shadow: 0 0 2px 2px rgba(0, 0, 0, 0.24), 0 5px 5px 0 rgba(0, 0, 0, 0.19);
+}
+
+  
+.form-btn-cancel {
+    font-size: 15px;
+    color: #1ba9f7;
+    width: 15%;
+    border-radius: 50px;
+    background-color: white;
+    border: 2px solid #1ba9f7;
+}
+
+.form-btn-cancel:hover {
+    font-size: 15px;
+    color: #1ba9f7;
+    width: 15%;
+    border-radius: 50px;
+    background-color: white;
+    border: 2px solid #1ba9f7;
+    box-shadow: 0 0 2px 2px rgba(0, 0, 0, 0.24), 0 5px 5px 0 rgba(0, 0, 0, 0.19);
+}
+
+.kanan-in {
+    text-decoration: none;
+    box-shadow: none;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 100%;
+    text-align: right;
+}
+
+.tengah-in {
+    text-decoration: none;
+    box-shadow: none;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 100%;
+    text-align: center;
+}
+
+input[type=date]::-webkit-inner-spin-button,
+input[type=date]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+}
+
+
+
+
+#map {
+	height: 100%;
+}
+
+h1 {
+	display: none;
+}
+
+html, body {
+	height: 100%;
+	margin: 0px;	
+}
+
+main {
+	height: 100%;
+}
+
+section {
+	height: 100%;
+}
