@@ -8,6 +8,7 @@ class Auth extends CI_Controller
     {
         parent::__construct();
         $this->load->library('form_validation');
+        var_dump($this->input->user_agent());
         var_dump($this->input->ip_address());
         die;
     }
