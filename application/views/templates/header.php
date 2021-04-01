@@ -46,10 +46,10 @@
         <div class="collapse navbar-collapse" id="navbarNav">
             <ul class="navbar-nav">
                 <li class="nav-item">
-                    <b><a class="nav-link text-white py-3 px-3" href="<?= base_url('main') ?>">Dashboard Tracking</a></b>
+                    <b><a class="nav-link text-white py-3 px-3" href="<?= base_url('home') ?>">Dashboard Tracking</a></b>
                 </li>
                 <li class="nav-item">
-                    <b><a class="nav-link text-white py-3 px-3" href="<?= base_url('main/configurePage') ?>">Configure</a></b>
+                    <b><a class="nav-link text-white py-3 px-3" href="<?= base_url('home/configurePage') ?>">Configure</a></b>
                 </li>
             </ul>
             <ul class="navbar-nav ml-auto">
