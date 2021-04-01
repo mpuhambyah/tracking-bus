@@ -34,7 +34,7 @@
 <!-- Custom scripts for all pages-->
 <script src="<?= base_url(); ?>assets/js/sb-admin-2.min.js?"></script>
 <script type="text/javascript" src="<?= base_url(); ?>assets/js/MovingMarker.js"></script>
-<script src="<?= base_url(); ?>assets/js/script.js?v=1"></script>
+<script src="<?= base_url(); ?>assets/js/script.js?v=2"></script>
 
 <script>
     const list = $(".nav-link.text-white");

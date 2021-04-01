@@ -96,6 +96,18 @@ var marker2 = L.Marker.movingMarker(TrackCoba,
 marker2.bindPopup('<p><b>Kondisi Bis 1</b><br/>Kecepatan<br/>Bahan Bakar<br/>Longitude<br/>Latitude</p>');
 
 
+const $button = document.querySelector('#sidebar-toggle');
+const $wrapper = document.querySelector('#wrapper');
+$button.addEventListener('click', (e) => {
+	e.preventDefault();
+	$wrapper.classList.toggle('toggled');
+});
+
+marker2.on('click', function () {
+	console.log("yeah");
+	$wrapper.classList.toggle('toggled');
+});
+
 marker2.on('end', function () {
 	marker2.bindPopup('<b>Simulasi Selesai</b>', {
 			closeOnClick: false
@@ -157,6 +169,12 @@ map.on("click", function (e) {
 	}).addTo(map);
 	console.log(arrayLatLng);
 });
+
+
+// $button.addEventListener('click', (e) => {
+// 	e.preventDefault();
+// 	$wrapper.classList.toggle('toggled');
+// });
 
 
 

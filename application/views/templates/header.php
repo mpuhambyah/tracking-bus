@@ -14,7 +14,7 @@
     <!-- Custom styles for this template-->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
     <link href="<?= base_url(); ?>assets/css/sb-admin-2.min.css?v=3" type="text/css" rel="stylesheet">
-    <link href="<?= base_url(); ?>assets/css/css.css?v=5" type="text/css" rel="stylesheet">
+    <link href="<?= base_url(); ?>assets/css/css.css?v=1" type="text/css" rel="stylesheet">
     <link href="<?= base_url(); ?>assets/vendor/datatables/dataTables.bootstrap4.min.css" type="text/css" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css" />
 
