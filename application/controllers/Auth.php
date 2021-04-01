@@ -1,14 +1,17 @@
 <?php
-defined('BASEPATH') OR exit('No direct script access allowed');
+defined('BASEPATH') or exit('No direct script access allowed');
 
-class Auth extends CI_Controller {
+class Auth extends CI_Controller
+{
 
     public function __construct()
     {
         parent::__construct();
         $this->load->library('form_validation');
+        var_dump($this->input->ip_address());
+        die;
     }
-  
+
     public function index()
     {
         if ($this->session->userdata('email')) {
@@ -55,7 +58,7 @@ class Auth extends CI_Controller {
                     $this->session->set_userdata($data);
                     redirect(base_url('home'));
 
-                #jika password salah
+                    #jika password salah
                 } else {
                     $this->session->set_flashdata('message', '<div class="alert alert-danger" role="alert">
                                 Wrong password!
@@ -71,11 +74,11 @@ class Auth extends CI_Controller {
                 redirect(base_url());
             }
 
-        #jika data user tidak ditemukan
+            #jika data user tidak ditemukan
         } else {
-        $this->session->set_flashdata('message', '<div class="alert alert-danger" role="alert">
+            $this->session->set_flashdata('message', '<div class="alert alert-danger" role="alert">
         Email is not registered! </div>');
-        redirect(base_url());
+            redirect(base_url());
         }
     }
 
@@ -152,10 +155,10 @@ class Auth extends CI_Controller {
         if ($type == 'verify') {
             $this->email->subject('Account Verification');
             $this->email->message('Click untuk verifikasi <a href="' . base_url() . 'auth/verify?email=' . $this->input->post('email') . '&token=' . urlencode($token) . '">Konfirmasi</a>');
-          } else if ($type == 'forgot') {
+        } else if ($type == 'forgot') {
             $this->email->subject('Reset Password');
             $this->email->message('Click this link to reset your password : <a href="' . base_url() . 'auth/resetpassword?email=' . $this->input->post('email') . '&token=' . urlencode($token) . '">Reset Password</a>');
-          }
+        }
         if ($this->email->send()) {
             return true;
         } else {
@@ -180,7 +183,7 @@ class Auth extends CI_Controller {
 
                 $this->db->delete('user_token', ['email' => $email]);
                 $this->session->set_flashdata('message', '<div class="alert alert-success" role="alert">
-                        '. $email .' has been activated! Please login.
+                        ' . $email . ' has been activated! Please login.
                         </div>');
                 redirect(base_url('auth'));
             } else {
@@ -214,9 +217,9 @@ class Auth extends CI_Controller {
             if ($user) {
                 $token = base64_encode(random_bytes(32));
                 $user_token = [
-                'email' => $email,
-                'token' => $token,
-                'date_created' => time()
+                    'email' => $email,
+                    'token' => $token,
+                    'date_created' => time()
                 ];
 
                 $this->db->insert('user_token', $user_token);
@@ -255,7 +258,7 @@ class Auth extends CI_Controller {
             $this->session->set_flashdata('message', '<div class="alert alert-danger" role="alert">
                     Reset password failed! Wrong email.
                     </div>');
-        redirect(base_url('auth'));
+            redirect(base_url('auth'));
         }
     }
 
@@ -264,7 +267,7 @@ class Auth extends CI_Controller {
         if (!$this->session->userdata('reset_email')) {
             redirect(base_url('auth'));
         }
-        
+
         $data['title'] = 'Change Password';
 
         $this->form_validation->set_rules('password1', 'Password', 'required|trim|min_length[8]|matches[password2]');

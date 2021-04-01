@@ -83,7 +83,7 @@ var busIcon = L.icon({
 //========================================================================
 
 var marker2 = L.Marker.movingMarker(TrackCoba,
-	9000, {
+	5000, {
 		autostart: true,
 		icon: busIcon,
 		loop: true,
