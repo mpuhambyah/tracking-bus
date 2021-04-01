@@ -36,6 +36,21 @@
 <script type="text/javascript" src="<?= base_url(); ?>assets/js/MovingMarker.js"></script>
 <script src="<?= base_url(); ?>assets/js/script.js?v=1"></script>
 
+<script>
+    const list = $(".nav-link.text-white");
+    const title = $("title").html();
+    for (let i = 0; i < list.length; i++) {
+        if (list[i].innerHTML == title) {
+            list[i].classList.add("active");
+        }
+    }
+
+    $('.custom-file-input').on('change', function() {
+        let fileName = $(this).val().split('\\').pop();
+        $(this).next('.custom-file-label').addClass("selected").html(fileName);
+    });
+</script>
+
 </body>
 
 </html>
