@@ -25,10 +25,10 @@
     <script src="//code.jquery.com/jquery-1.11.2.min.js"></script>
 
     <!-- CSS -->
-    <link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet-0.7.3/leaflet.css" />
+    <link rel="stylesheet" href="https://cdn.leafletjs.com/leaflet-0.7.3/leaflet.css?v=11" />
     <link rel="stylesheet" href="style.css" />
 
-    <script src="http://cdn.leafletjs.com/leaflet-0.7.3/leaflet.js"></script>
+    <script src="https://cdn.leafletjs.com/leaflet-0.7.3/leaflet.js?v=11"></script>
 
     <!-- Core plugin JavaScript-->
     <script src="<?= base_url(); ?>assets/vendor/jquery-easing/jquery.easing.min.js"></script>

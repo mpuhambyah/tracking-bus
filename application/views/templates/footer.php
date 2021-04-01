@@ -33,7 +33,6 @@
 </script>
 <!-- Custom scripts for all pages-->
 <script src="<?= base_url(); ?>assets/js/sb-admin-2.min.js?"></script>
-<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.7.1/leaflet.js"></script>
 <script type="text/javascript" src="<?= base_url(); ?>assets/js/MovingMarker.js"></script>
 <script src="<?= base_url(); ?>assets/js/script.js?v=1"></script>
 
