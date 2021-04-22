@@ -9,18 +9,41 @@ var map = L.map('map', {
 });
 
 var markers = {};
+var polyline = {};
+let latlng_polyline = [];
 
 function setMarkers(data) {
 	data.BMS.forEach(function (obj) {
+		let temp;
 		if (!markers.hasOwnProperty(obj.id)) {
 			markers[obj.id] = new L.Marker([obj.lat, obj.long]).addTo(map);
 			markers[obj.id].previousLatLngs = [];
 		} else {
+			temp = markers[obj.id].getLatLng();
 			markers[obj.id].previousLatLngs.push(markers[obj.id].getLatLng());
 			markers[obj.id].setLatLng([obj.lat, obj.long]);
+			latlng_polyline.push([
+				[obj.lat, obj.long], temp
+			]);
+		}
+		if (!polyline.hasOwnProperty(obj.id)) {
+			polyline[obj.id] = new L.polyline([
+				[obj.lat, obj.long],
+				[obj.lat, obj.long]
+			], {
+				color: 'red'
+			}).addTo(map);
+			polyline[obj.id].previousLatLngs = [obj.lat, obj.long];
+		} else {
+			polyline[obj.id] = L.polyline(latlng_polyline, {
+				color: 'red'
+			}).addTo(map);
+			polyline[obj.id].previousLatLngs.push(polyline[obj.id].getLatLng());
+			polyline[obj.id].setLatLng([obj.lat, obj.long]);
 		}
 	});
 }
+
 
 var json = {
 	"BMS": [{
@@ -49,6 +72,6 @@ setInterval(function () {
 	});
 	console.log(dataJson);
 	setMarkers(dataJson);
-}, 1000);
+}, 500);
 
 console.log(markers);
