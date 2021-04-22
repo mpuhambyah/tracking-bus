@@ -8,61 +8,47 @@ var map = L.map('map', {
 	]
 });
 
-var realtime = [];
-var arrayLatLng = [];
-var temp_nowLatLng = "[]";
+var markers = {};
 
-for (let i = 0; i < 2; i++) {
-	realtime[i] = L.realtime({
-		// url: 'https://wanderdrone.appspot.com/',
-		url: base + 'getjson/getdata',
-		type: 'json'
-	}, {
-		interval: 500,
-		pointToLayer: function (feature, latlng) {
-			marker = L.marker(latlng, {
-				'icon': L.icon({
-					iconUrl: 'assets/img/bus_point[' + i + '].png ',
-					iconSize: [38, 54], // size of the icon
-					iconAnchor: [20, 55], // point of the icon which will correspond to marker's location
-					popupAnchor: [-3, -76] // point from which the popup should open relative to the iconAnchor
-				})
-			});
-			return marker
+function setMarkers(data) {
+	data.BMS.forEach(function (obj) {
+		if (!markers.hasOwnProperty(obj.id)) {
+			markers[obj.id] = new L.Marker([obj.lat, obj.long]).addTo(map);
+			markers[obj.id].previousLatLngs = [];
+		} else {
+			markers[obj.id].previousLatLngs.push(markers[obj.id].getLatLng());
+			markers[obj.id].setLatLng([obj.lat, obj.long]);
 		}
-	}).addTo(map);
+	});
 }
 
-realtime[0].on('update', function (e) {
-	var popupContent = function (fId) {
-			var feature = e.features[fId],
-				c = feature.geometry.coordinates;
-			return c;
-		},
-		bindFeaturePopup = function (fId) {
-			realtime[0].getLayer(fId).bindPopup(popupContent(fId));
-		},
-		updateFeaturePopup = function (fId) {
-			realtime[0].getLayer(fId).getPopup().setContent("Bus at " + popupContent(fId));
-		},
-		polyline = function (fId) {
-			nowLatLng = [popupContent(fId)[1], popupContent(fId)[0]];
-			if (nowLatLng[0] != temp_nowLatLng[0] && nowLatLng[1] != temp_nowLatLng[1]) {
-				arrayLatLng.push(nowLatLng);
-			}
-			temp_nowLatLng = nowLatLng;
-		};
+var json = {
+	"BMS": [{
+		"id": '1',
+		"lat": -7.282826,
+		"long": 112.794709
+	}, {
+		"id": '2',
+		"lat": -7.294911,
+		"long": 112.794709
+	}]
+}
 
-	map.fitBounds(realtime[0].getBounds(), {
-		maxZoom: 15
+setMarkers(json);
+
+setInterval(function () {
+	let dataJson;
+	$.ajax({
+		url: base + 'getjson/getdata',
+		dataType: 'json',
+		async: false,
+		success: function (response) {
+			dataJson = response;
+			console.log(response);
+		}
 	});
+	console.log(dataJson);
+	setMarkers(dataJson);
+}, 1000);
 
-	Object.keys(e.enter).forEach(bindFeaturePopup);
-	Object.keys(e.update).forEach(updateFeaturePopup);
-	Object.keys(e.update).forEach(polyline);
-	L.polyline(arrayLatLng, {
-		color: 'red'
-	}).addTo(map);
-});
-
-realtime[1].on('update', function (e) {});
+console.log(markers);

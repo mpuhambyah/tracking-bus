@@ -22,8 +22,16 @@ class GetJSON extends CI_Controller
 
     public function getData()
     {
-        $data = $this->db->limit(1)->order_by('id', 'DESC')->get('bus_location')->row_array();
-        $file =  '{"geometry" : {"type" : "Point","coordinates" : [' . $data['longitude'] . ',' . $data['latitude'] .  ']}, "type" : "Feature", "properties" : {}}';
-        echo ($file);
+        $data = $this->db->distinct()->order_by('id', 'DESC')->group_by('id_bus')->get('bus_location')->result_array();
+        $new['BMS'] = [];
+        foreach ($data as $d) {
+            $new['BMS'][] = [
+                'id' => $d['id_bus'],
+                'lat' => $d['latitude'],
+                'long' => $d['longitude']
+            ];
+        }
+
+        echo json_encode($new);
     }
 }

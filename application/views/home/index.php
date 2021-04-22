@@ -19,6 +19,8 @@
     <script>
         const base = '<?= base_url(); ?>';
     </script>
+    <script src="<?= base_url(); ?>assets/vendor/jquery/jquery.min.js"></script>
+    <script src="<?= base_url(); ?>assets/vendor/jquery-easing/jquery.easing.min.js"></script>
     <script src="https://unpkg.com/leaflet@1.0.3/dist/leaflet-src.js"></script>
     <script src="<?= base_url(); ?>assets/js/dist/leaflet-realtime.js"></script>
     <script src="<?= base_url(); ?>assets/js/script.js"></script>
