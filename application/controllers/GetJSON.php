@@ -22,7 +22,7 @@ class GetJSON extends CI_Controller
 
     public function getData()
     {
-        $data = $this->db->where_in('id', 'SELECT MAX(id) AS id FROM bus_location GROUP BY id_bus')->get('bus_location')->result_array();
+        $data = $this->db->query('SELECT * FROM bus_location WHERE id IN (SELECT MAX(id) AS id FROM bus_location GROUP BY id_bus)')->result_array();
         $new['BMS'] = [];
         foreach ($data as $d) {
             $new['BMS'][] = [
