@@ -15,10 +15,21 @@ class Home extends CI_Controller
     {
         $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
         $data['name'] = $this->session->userdata('name');
-        $data['title'] = 'Dashboard Tracking';
+        $data['title'] = 'Dashboard';
         $this->load->view('templates/header', $data);
         $this->load->view('templates/sidebar', $data);
         $this->load->view('home/index', $data);
-        $this->load->view('templates/footer', $data);
+        $this->load->view('templates/dashboard-footer', $data);
+    }
+
+    public function historyTracking()
+    {
+        $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
+        $data['name'] = $this->session->userdata('name');
+        $data['title'] = 'History';
+        $this->load->view('templates/header', $data);
+        $this->load->view('templates/history-sidebar', $data);
+        $this->load->view('home/historyTracking', $data);
+        $this->load->view('templates/history-footer', $data);
     }
 }

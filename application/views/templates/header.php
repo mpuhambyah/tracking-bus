@@ -12,7 +12,7 @@
 
     <!-- Custom styles for this template-->
     <link href="<?= base_url(); ?>assets/css/sb-admin-2.min.css?v=3" type="text/css" rel="stylesheet">
-    <link href="<?= base_url(); ?>assets/css/css.css?v=1" type="text/css" rel="stylesheet">
+    <link href="<?= base_url(); ?>assets/css/css.css?v=2" type="text/css" rel="stylesheet">
     <link href="<?= base_url(); ?>assets/vendor/datatables/dataTables.bootstrap4.min.css" type="text/css" rel="stylesheet">
 
     <!-- CSS -->
@@ -26,6 +26,10 @@
 
     <style>
         #map {
+            height: 96.5%;
+        }
+
+        #mapid {
             height: 96.5%;
         }
 
@@ -46,7 +50,10 @@
         <div class="collapse navbar-collapse" id="navbarNav">
             <ul class="navbar-nav">
                 <li class="nav-item">
-                    <b><a class="nav-link text-white py-3 px-3" href="<?= base_url('home') ?>">Dashboard Tracking</a></b>
+                    <b><a class="nav-link text-white py-3 px-3" href="<?= base_url('home') ?>">Dashboard</a></b>
+                </li>
+                <li class="nav-item">
+                    <b><a class="nav-link text-white py-3 px-3" href="<?= base_url('home/historyTracking') ?>">History</a></b>
                 </li>
                 <li class="nav-item">
                     <b><a class="nav-link text-white py-3 px-3" href="<?= base_url('home/configurePage') ?>">Configure</a></b>

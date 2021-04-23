@@ -8,6 +8,7 @@ var map = L.map('map', {
 	]
 });
 
+
 var markers = {};
 var polyline = {};
 let latlng_polyline = [];
@@ -138,6 +139,3 @@ setInterval(function () {
 	});
 	// console.log(dataJson);
 }, 1000);
-
-
-// console.log(markers);
