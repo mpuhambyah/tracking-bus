@@ -17,24 +17,23 @@
 </div>
 
 <!-- Optional JavaScript; choose one of the two! -->
+<script>
+    const base = '<?= base_url(); ?>';
+</script>
 
 <!-- Option 1: jQuery and Bootstrap Bundle (includes Popper) -->
 <script src="<?= base_url(); ?>assets/vendor/jquery/jquery.min.js"></script>
+<script src="<?= base_url(); ?>assets/vendor/jquery-easing/jquery.easing.min.js"></script>
 <script src="<?= base_url(); ?>assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 <script src="<?= base_url(); ?>assets/vendor/datatables/jquery.dataTables.min.js"></script>
 <script src="<?= base_url(); ?>assets/vendor/datatables/dataTables.bootstrap4.js"></script>
-<script type="text/javascript" src="https://cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
-<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script>
 
-<!-- Core plugin JavaScript-->
-<script src="<?= base_url(); ?>assets/vendor/jquery-easing/jquery.easing.min.js"></script>
-<script>
-    const base = "<?= base_url(); ?>";
-</script>
-<!-- Custom scripts for all pages-->
+<script type="text/javascript" src="https://cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
+<script src="https://unpkg.com/leaflet@1.0.3/dist/leaflet-src.js"></script>
+<script src="<?= base_url(); ?>assets/js/dist/leaflet-realtime.js"></script>
+<script src="<?= base_url(); ?>assets/js/script.js?=2"></script>
+
 <script src="<?= base_url(); ?>assets/js/sb-admin-2.min.js?"></script>
-<script type="text/javascript" src="<?= base_url(); ?>assets/js/MovingMarker.js"></script>
-<script src="<?= base_url(); ?>assets/js/script.js?v=1"></script>
 
 <script>
     const list = $(".nav-link.text-white");
