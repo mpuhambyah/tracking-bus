@@ -26,7 +26,7 @@
 
     <style>
         #map {
-            height: 100%;
+            height: 96.5%;
         }
 
         .custom .leaflet-popup-content-wrapper,
