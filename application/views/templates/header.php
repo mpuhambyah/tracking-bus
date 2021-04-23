@@ -11,7 +11,8 @@
     <link href="<?= base_url(); ?>assets/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
 
     <!-- Custom styles for this template-->
-    <link href="<?= base_url(); ?>assets/css/sb-admin-2.min.css?v=3" type="text/css" rel="stylesheet">
+    <link href="<?= base_url(); ?>assets/css/sb-admin-2.min.css" type="text/css" rel="stylesheet">
+    <link href="<?= base_url(); ?>assets/css/sb-admin-2.css" type="text/css" rel="stylesheet">
     <link href="<?= base_url(); ?>assets/css/css.css?v=2" type="text/css" rel="stylesheet">
     <link href="<?= base_url(); ?>assets/vendor/datatables/dataTables.bootstrap4.min.css" type="text/css" rel="stylesheet">
 
