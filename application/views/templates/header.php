@@ -16,9 +16,9 @@
     <link href="<?= base_url(); ?>assets/vendor/datatables/dataTables.bootstrap4.min.css" type="text/css" rel="stylesheet">
 
     <!-- CSS -->
-    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.0.3/dist/leaflet.css" />
+    <link rel="stylesheet" href="<?= base_url('assets/leaflet/leaflet.css'); ?>" />
 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.7.1/leaflet.js"></script>
+    <script src="<?= base_url('assets/leaflet/leaflet.js'); ?>"></script>
 
     <link rel="icon" href="<?= base_url() ?>/assets/img/logo-its.png" type="image/gif">
 
