@@ -99,6 +99,7 @@ function setMarkers(data) {
 					success: function (data) {
 						console.log(data.id);
 						$('.bus-name').html(data.name);
+						$('#image').html('<img src="' + base + '/assets/img/' + data.image + '" alt="bus-image" class="img-fluid mb-3" style="border-radius: 15px;">');
 						$('#speed').html(data.speed);
 						$('#location').html(data.latitude + ', ' + data.longitude);
 						$('#time').html(data.time);

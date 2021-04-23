@@ -29,7 +29,7 @@ $('.getId').on('click', function () {
 			let html_content = "";
 			console.log(data);
 			html_title = '<h5 class="card-title">' + data.name + '</h5>';
-			html_image = '<img class="card-img-top" src="' + data.image + '" alt="Card image cap">';
+			html_image = '<img class="card-img-top" src="' + base + '/assets/img/' + data.image + '" alt="Card image cap">';
 			html_content += '<p class="card-text">' + data.description + '</p>';
 			html_content += '<p class="card-text">' + data.speed + '</p>';
 			html_content += '<p class="card-text">' + data.latitude + ', ' + data.longitude + '</p>';

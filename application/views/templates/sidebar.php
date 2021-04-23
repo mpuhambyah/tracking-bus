@@ -3,7 +3,7 @@
         <div class="sidebar-brand mb-3">
             <a id="sidebar-toggle" class="text-danger"><i class="fas fa-times"></i></a>
         </div>
-        <img src="https://media.wired.com/photos/5cf832279c2a7cd3975976ca/master/pass/Transpo_XcelsiorChargeCharging_TA.jpg" alt="bus-image" class="img-fluid mb-3" style="border-radius: 15px;">
+        <div id="image"></div>
         <h4 class="text-center bus-name"></h4>
         <div class="container-data px-3">
             <table class="table table-borderless">
