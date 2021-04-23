@@ -34,7 +34,7 @@ $('.getId').on('click', function () {
 			html_content += '<p class="card-text">' + data.speed + '</p>';
 			html_content += '<p class="card-text">' + data.latitude + ', ' + data.longitude + '</p>';
 			html_content += '<p class="card-text">' + data.time + '</p>';
-			html_content += '<a href="#" data-id-bus="' + data.id + '" class="btn btn-primary getPolyline">Get Polyline</a>';
+			html_content += '<button href="#" data-id-bus="' + data.id + '" class="btn btn-primary getPolyline">Get Polyline</button>';
 			$('#card-title').html(html_title);
 			$('#card-image').html(html_image);
 			$('#card-content').html(html_content);
@@ -42,10 +42,15 @@ $('.getId').on('click', function () {
 				mymap.removeLayer(theMarker);
 			};
 			theMarker = L.marker([data.latitude, data.longitude]).addTo(mymap);
+			mymap.flyTo([data.latitude, data.longitude], 15, {
+				animate: true,
+				duration: 5
+			});
 			arrayLatLng = [
 				[data.latitude, data.longitude]
 			];
 			$('.getPolyline').on('click', function () {
+				$('.getPolyline').attr('disabled', true);
 				const id = $(this).data("id-bus");
 				$.ajax({
 					url: base + "home/getPolyline",
