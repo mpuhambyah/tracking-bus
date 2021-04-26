@@ -13,6 +13,7 @@ $(function () {
 			success: function (data) {
 				$('#name').val(data.name);
 				$('#description').val(data.description);
+				$('#image').attr('src', base + '/assets/img/' + data.image);
 				$('#id').val(data.id);
 			}
 		})

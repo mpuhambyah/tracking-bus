@@ -83,10 +83,30 @@ class Admin extends CI_Controller
 
   public function edit()
   {
-    $data = [
-      "name" => $this->input->post('name', true),
-      "description" => $this->input->post('description', true),
-    ];
+    $image = $_FILES['image']['name'];
+    if($image){
+      $config['upload_path'] = './assets/img';
+      $config['allowed_types'] = 'pdf|jpg|png|JPG';
+      $config['max_size']     = '2048';
+      $this->load->library('upload', $config);
+    
+      if ($this->upload->do_upload('image')) {
+        $up_image = $this->upload->data('file_name');
+        $data = [
+          'name' => $this->input->post('name'),
+          'description' => $this->input->post('description'),
+          'image' => $up_image
+        ];
+      } else {
+        $this->session->set_flashdata('message', '<div class="alert alert-danger" role="alert">' . $this->upload->display_errors() . '</div>');
+        redirect(base_url('admin'));
+      }
+    }else {
+      $data = [
+        "name" => $this->input->post('name', true),
+        "description" => $this->input->post('description', true),
+      ];
+    }
 
     $this->db->where('id', $this->input->post('id'));
     $this->db->update('buses', $data);

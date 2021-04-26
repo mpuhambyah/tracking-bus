@@ -50,15 +50,14 @@
                         <tr>
                             <th scope="row"><?= $i; ?></th>
                             <td><img src="<?= base_url(); ?>assets/img/<?= $l['image']; ?>" alt="" style="width: 150px"
-                                    class="img-thumbnail""></td>
-                                <td><?= $l['name']; ?></td>
-                                <td><?= $l['description']; ?></td>
-                                
-                                <td>
-                                <a href=" <?= base_url('admin/edit/') . $l['id']; ?>"
-                                    class="btn btn-info tombolEditBus" data-id="<?= $l['id']; ?>" data-toggle="modal"
-                                    data-target="#UserEdit">
-                                <i class="fas fa-pencil-alt"></i>
+                                    class="img-thumbnail"></td>
+                            <td><?= $l['name']; ?></td>
+                            <td><?= $l['description']; ?></td>
+
+                            <td>
+                                <a href=" <?= base_url('admin/edit/') . $l['id']; ?>" class="btn btn-info tombolEditBus"
+                                    data-id="<?= $l['id']; ?>" data-toggle="modal" data-target="#UserEdit">
+                                    <i class="fas fa-pencil-alt"></i>
                                 </a>
                                 <a href="<?= base_url('admin/delete/') . $l['id']; ?>"
                                     onclick="return confirm('Yakin?');" class="btn btn-danger">
@@ -137,10 +136,18 @@
                     <div class="form-group">
                         <label for="name">Nama Bus</label>
                         <input type="text" class="form-control" id="name" name="name">
+                        <?= form_error('name', '<small class="text-danger pl-3">', '</small>'); ?>
                     </div>
                     <div class="form-group">
                         <label for="email">Deskripsi</label>
                         <input type="text" class="form-control" id="description" name="description">
+                        <?= form_error('description', '<small class="text-danger pl-3">', '</small>'); ?>
+                    </div>
+                    <div class="form-group">
+                        <label for="file">Image (Klik pilih gambar jika ingin mengganti gambar)</label>
+                        <img id="image" src="" alt="" style="width: 150px" class="img-thumbnail mb-3">
+                        <input type="file" class="form-control-file" name="image" size="20">
+                        <?= form_error('image', '<small class="text-danger pl-3">', '</small>'); ?>
                     </div>
                 </div>
                 <div class="modal-footer">
