@@ -1,6 +1,6 @@
 var map = L.map('map', {
 	'center': [-7.2819492, 112.792329],
-	'zoom': 10,
+	'zoom': 15,
 	'layers': [
 		L.tileLayer('http://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}.png', {
 			'attribution': 'Map data &copy; OpenStreetMap contributors'
@@ -12,62 +12,53 @@ var map = L.map('map', {
 var markers = {};
 var polyline = {};
 let latlng_polyline = [];
-var color = ['', 'red', 'green', 'yellow'];
 
 const $button = document.querySelector('#sidebar-toggle');
 const $wrapper = document.querySelector('#wrapper');
 
 var datawrapper;
-
-var customPopup = '<img src="https://www.pngkey.com/png/full/51-517748_bus-icon-png-white.png" width="50"></img>';
+var popUpUrl = base + '/assets/img/marker-point.png';
+var customPopup = '<img src="' + popUpUrl + '" width="25"></img>';
 
 // specify popup options 
 var customOptions = {
-	'maxWidth': '500',
+	'maxWidth': '100',
 	'className': 'custom'
 }
+
+var busIcon = L.icon({
+	iconUrl: base + '/assets/img/marker-bus.png',
+
+	iconSize: [38, 95], // size of the icon
+	iconAnchor: [20, 45], // point of the icon which will correspond to marker's location
+	popupAnchor: [0, 0] // point from which the popup should open relative to the iconAnchor
+});
+
+var busIconClicked = L.icon({
+	iconUrl: base + '/assets/img/marker-busClicked.png',
+
+	iconSize: [38, 95], // size of the icon
+	iconAnchor: [20, 45], // point of the icon which will correspond to marker's location
+	popupAnchor: [0, 0] // point from which the popup should open relative to the iconAnchor
+});
+let id_prev = 0;
 
 function setMarkers(data) {
 	data.BMS.forEach(function (obj) {
 		let temp;
 		if (!markers.hasOwnProperty(obj.id)) {
 			latlng_polyline[obj.id] = [];
-			markers[obj.id] = new L.Marker([obj.lat, obj.long]).addTo(map);
+			markers[obj.id] = new L.Marker([obj.lat, obj.long], {
+				icon: busIcon,
+				rotationAngle: obj.head
+			}).addTo(map);
 			markers[obj.id].previousLatLngs = [];
 		} else {
 			temp = markers[obj.id].getLatLng();
 			markers[obj.id].previousLatLngs.push(markers[obj.id].getLatLng());
 			markers[obj.id].setLatLng([obj.lat, obj.long]);
-			// if (latlng_polyline[obj.id].length) {
-			// 	if (latlng_polyline[obj.id][latlng_polyline[obj.id].length - 1][0][0] == temp.lat && latlng_polyline[obj.id][latlng_polyline[obj.id].length - 1][0][1] == temp.lng) {
-			// 		// console.log('oke');
-			// 	} else {
-			// 		latlng_polyline[obj.id].push([
-			// 			[parseFloat(obj.lat), parseFloat(obj.long)],
-			// 			[temp.lat, temp.lng]
-			// 		]);
-			// 		// console.log(latlng_polyline[obj.id]);
-			// 	}
-			// } else {
-			// 	latlng_polyline[obj.id].push([
-			// 		[parseFloat(obj.lat), parseFloat(obj.long)],
-			// 		[temp.lat, temp.lng]
-			// 	]);
-			// 	// console.log(latlng_polyline[obj.id]);
-			// }
-
-			// latlng_polyline[obj.id].push([
-			// 	[parseFloat(obj.lat), parseFloat(obj.long)],
-			// 	[temp.lat, temp.lng]
-			// ]);
+			markers[obj.id].setRotationAngle(obj.head);
 		}
-
-
-		// console.log(latlng_polyline);
-		// markers[obj.id].previousLatLngs = [obj.lat, obj.long];
-		// L.polyline(latlng_polyline[obj.id], {
-		// 	color: color[obj.id]
-		// }).addTo(map);
 
 		$button.addEventListener('click', (e) => {
 			e.preventDefault();
@@ -76,15 +67,29 @@ function setMarkers(data) {
 		});
 
 		map.on('click', function () {
+			markers[obj.id].setIcon(busIcon);
 			$('#wrapper').addClass('toggled');
 			clearInterval(datawrapper);
 		});
 
-		markers[obj.id].once('click', function () {
-			markers[obj.id].bindPopup(customPopup, customOptions).openPopup();
-		});
+		// markers[obj.id].once('click', function () {
+		// 	// markers[obj.id].bindPopup(customPopup, customOptions).openPopup();
+
+		// });
+
 
 		markers[obj.id].on('click', function () {
+			console.log(obj.id);
+			console.log(id_prev);
+			markers[obj.id].setIcon(busIconClicked);
+			if (id_prev) {
+				markers[id_prev].setIcon(busIcon);
+			}
+			if (id_prev == obj.id) {
+				console.log("oke");
+				markers[obj.id].setIcon(busIconClicked);
+			}
+			id_prev = obj.id;
 			clearInterval(datawrapper);
 			$('#wrapper').removeClass('toggled');
 			const id = obj.id;
@@ -97,12 +102,12 @@ function setMarkers(data) {
 					},
 					method: "post",
 					success: function (data) {
-						console.log(data.id);
 						$('.bus-name').html(data.name);
 						$('#image').html('<img src="' + base + '/assets/img/' + data.image + '" alt="bus-image" class="img-fluid mb-3" style="border-radius: 15px;">');
 						$('#speed').html(data.speed);
 						$('#location').html(data.latitude + ', ' + data.longitude);
 						$('#time').html(data.time);
+						$('#time_ago').html(data.time_ago);
 					}
 				});
 			}, 500);
@@ -111,7 +116,6 @@ function setMarkers(data) {
 				duration: 5
 			});
 		});
-
 	});
 
 }

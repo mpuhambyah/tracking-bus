@@ -29,8 +29,10 @@
 <script src="<?= base_url(); ?>assets/vendor/datatables/dataTables.bootstrap4.js"></script>
 
 <script type="text/javascript" src="https://cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
-<script src="https://unpkg.com/leaflet@1.0.3/dist/leaflet-src.js"></script>
+
+<script src="<?= base_url(); ?>assets/js/leaflet/leaflet-src.js"></script>
 <script src="<?= base_url(); ?>assets/js/dist/leaflet-realtime.js"></script>
+<script src="<?= base_url(); ?>assets/js/dist/leaflet.rotatedMarker.js"></script>
 
 <script src="<?= base_url(); ?>assets/js/script_history.js?=2"></script>
 

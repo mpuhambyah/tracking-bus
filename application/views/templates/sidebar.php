@@ -37,6 +37,16 @@
                     <td></td>
                     <td class="pt-0"><span id="time"></span></td>
                 </tr>
+                <tr>
+                    <td class="pt-4"><i class="fas fa-history"></i></td>
+                    <td class="pt-4">
+                        <h6>Last Receive Data</h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td class="pt-0"><span id="time_ago"></span></td>
+                </tr>
             </table>
         </div>
     </aside>

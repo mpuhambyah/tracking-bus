@@ -1,5 +1,4 @@
-<div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-    aria-hidden="true">
+<div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
@@ -19,7 +18,7 @@
 
 <!-- Optional JavaScript; choose one of the two! -->
 <script>
-const base = '<?= base_url(); ?>';
+    const base = '<?= base_url(); ?>';
 </script>
 
 <!-- Option 1: jQuery and Bootstrap Bundle (includes Popper) -->
@@ -31,26 +30,28 @@ const base = '<?= base_url(); ?>';
 <script src="<?= base_url(); ?>assets/vendor/datatables/dataTables.bootstrap4.js"></script>
 
 <script type="text/javascript" src="https://cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
-<script src="https://unpkg.com/leaflet@1.0.3/dist/leaflet-src.js"></script>
+
+<script src="<?= base_url(); ?>assets/js/leaflet/leaflet-src.js"></script>
 <script src="<?= base_url(); ?>assets/js/dist/leaflet-realtime.js"></script>
+<script src="<?= base_url(); ?>assets/js/dist/leaflet.rotatedMarker.js"></script>
 
 <script src="<?= base_url(); ?>assets/js/script_dashboard.js?=2"></script>
 
 <script src="<?= base_url(); ?>assets/js/sb-admin-2.min.js?"></script>
 
 <script>
-const list = $(".nav-link.text-white");
-const title = $("title").html();
-for (let i = 0; i < list.length; i++) {
-    if (list[i].innerHTML == title) {
-        list[i].classList.add("active");
+    const list = $(".nav-link.text-white");
+    const title = $("title").html();
+    for (let i = 0; i < list.length; i++) {
+        if (list[i].innerHTML == title) {
+            list[i].classList.add("active");
+        }
     }
-}
 
-$('.custom-file-input').on('change', function() {
-    let fileName = $(this).val().split('\\').pop();
-    $(this).next('.custom-file-label').addClass("selected").html(fileName);
-});
+    $('.custom-file-input').on('change', function() {
+        let fileName = $(this).val().split('\\').pop();
+        $(this).next('.custom-file-label').addClass("selected").html(fileName);
+    });
 </script>
 
 </body>
