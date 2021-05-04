@@ -26,7 +26,7 @@ class GetJSON extends CI_Controller
 
     public function humanTiming($time)
     {
-        $time = now() - $time; // to get the time since that moment
+        $time = now() - $time;
         $time = ($time < 1) ? 1 : $time;
         $tokens = array(
             31536000 => 'year',
