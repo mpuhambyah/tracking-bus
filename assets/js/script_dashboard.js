@@ -28,18 +28,12 @@ var customOptions = {
 
 var busIcon = L.icon({
 	iconUrl: base + '/assets/img/marker-bus.png',
-
 	iconSize: [38, 95], // size of the icon
-	iconAnchor: [20, 45], // point of the icon which will correspond to marker's location
-	popupAnchor: [0, 0] // point from which the popup should open relative to the iconAnchor
 });
 
 var busIconClicked = L.icon({
 	iconUrl: base + '/assets/img/marker-busClicked.png',
-
 	iconSize: [38, 95], // size of the icon
-	iconAnchor: [20, 45], // point of the icon which will correspond to marker's location
-	popupAnchor: [0, 0] // point from which the popup should open relative to the iconAnchor
 });
 let id_prev = 0;
 
@@ -62,6 +56,7 @@ function setMarkers(data) {
 
 		$button.addEventListener('click', (e) => {
 			e.preventDefault();
+			markers[obj.id].setIcon(busIcon);
 			$('#wrapper').addClass('toggled');
 			clearInterval(datawrapper);
 		});
@@ -71,12 +66,6 @@ function setMarkers(data) {
 			$('#wrapper').addClass('toggled');
 			clearInterval(datawrapper);
 		});
-
-		// markers[obj.id].once('click', function () {
-		// 	// markers[obj.id].bindPopup(customPopup, customOptions).openPopup();
-
-		// });
-
 
 		markers[obj.id].on('click', function () {
 			console.log(obj.id);
@@ -111,7 +100,7 @@ function setMarkers(data) {
 					}
 				});
 			}, 500);
-			map.flyTo([obj.lat, obj.long], 15, {
+			map.flyTo([obj.lat, obj.long], 18, {
 				animate: true,
 				duration: 5
 			});

@@ -51,6 +51,45 @@
         let fileName = $(this).val().split('\\').pop();
         $(this).next('.custom-file-label').addClass("selected").html(fileName);
     });
+
+    $(".tableLog").DataTable({
+        processing: true,
+        serverSide: true,
+        order: [],
+        ajax: {
+            "url": '<?= base_url('home/getDataLog') ?>',
+            "method": "POST"
+        },
+        colums: [{
+                "data": "id",
+                "width": 150
+            },
+            {
+                "data": "id_bus",
+                "width": 150
+            },
+            {
+                "data": "speed",
+                "width": 150
+            },
+            {
+                "data": "heading",
+                "width": 150
+            },
+            {
+                "data": "time",
+                "width": 150
+            },
+            {
+                "data": "latitude",
+                "width": 150
+            },
+            {
+                "data": "longitude",
+                "width": 150
+            }
+        ]
+    });
 </script>
 
 </body>

@@ -14,6 +14,7 @@
     <link href="<?= base_url(); ?>assets/css/sb-admin-2.min.css" type="text/css" rel="stylesheet">
     <link href="<?= base_url(); ?>assets/css/sb-admin-2.css" type="text/css" rel="stylesheet">
     <link href="<?= base_url(); ?>assets/css/css.css?v=2" type="text/css" rel="stylesheet">
+    <link href="<?= base_url(); ?>assets/css/css_message.css?v=2" type="text/css" rel="stylesheet">
     <link href="<?= base_url(); ?>assets/vendor/datatables/dataTables.bootstrap4.min.css" type="text/css" rel="stylesheet">
 
     <!-- CSS -->
@@ -56,7 +57,10 @@
                     <b><a class="nav-link text-white py-3 px-3" href="<?= base_url('home/historyTracking') ?>">History</a></b>
                 </li>
                 <li class="nav-item">
-                    <b><a class="nav-link text-white py-3 px-3" href="<?= base_url('home/configurePage') ?>">Configure</a></b>
+                    <b><a class="nav-link text-white py-3 px-3" href="<?= base_url('home/logPage') ?>">Data Log</a></b>
+                </li>
+                <li class="nav-item">
+                    <b><a class="nav-link text-white py-3 px-3" href="<?= base_url('home/messagePage/5') ?>">Send Message</a></b>
                 </li>
             </ul>
             <ul class="navbar-nav ml-auto">

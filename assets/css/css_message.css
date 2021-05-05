@@ -1,0 +1,66 @@
+
+/* Chat containers */
+.container {
+	text-align: left;
+	border: 2px solid #dedede;
+	background-color: #f1f1f1;
+	border-radius: 5px;
+	padding: 10px;
+	margin: 10px 0;
+	border-top-right-radius: 30px;
+	border-top-left-radius: 0px;
+	border-bottom-right-radius: 30px;
+	border-bottom-left-radius: 30px;
+}
+
+/* Darker chat container */
+.darker {
+	border-color: #1176AE;
+	background-color: #1176AE;
+	color:white;
+	text-align: right;
+	border-top-right-radius: 0px;
+	border-top-left-radius: 30px;
+	border-bottom-right-radius: 30px;
+	border-bottom-left-radius: 30px;
+}
+
+/* Clear floats */
+.container::after {
+	content: "";
+	clear: both;
+	display: table;
+}
+
+/* Style time text */
+.time-right {
+	float: right;
+	color:white;
+}
+
+/* Style time text */
+.time-left {
+	float: left;
+	color: #999;
+}
+
+/* width */
+::-webkit-scrollbar {
+	width: 10px;
+	height: 10px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+	background: #f1f1f1;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+	background: #888;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+	background: #555;
+}

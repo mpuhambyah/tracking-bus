@@ -34,7 +34,8 @@ $('.getId').on('click', function () {
 			html_content += '<p class="card-text">' + data.speed + '</p>';
 			html_content += '<p class="card-text">' + data.latitude + ', ' + data.longitude + '</p>';
 			html_content += '<p class="card-text">' + data.time + '</p>';
-			html_content += '<button href="#" data-id-bus="' + data.id + '" class="btn btn-primary getPolyline">Get Polyline</button>';
+			html_content += '<button href="#" data-id-bus="' + data.id + '" class="btn btn-primary mr-2 getPolyline">Get Polyline</button>';
+			html_content += '<button href="#" data-id-bus="' + data.id + '" class="btn btn-danger clearPolyline">Clear</button>';
 			$('#card-title').html(html_title);
 			$('#card-image').html(html_image);
 			$('#card-content').html(html_content);
@@ -70,6 +71,10 @@ $('.getId').on('click', function () {
 						}).addTo(mymap);
 					},
 				});
+			});
+			$('.clearPolyline').on('click', function () {
+				mymap.removeLayer(thePolyline);
+				$('.getPolyline').attr('disabled', false);
 			});
 		},
 	});
