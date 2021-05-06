@@ -33,40 +33,86 @@ class Home extends CI_Controller
         $this->load->view('templates/dashboard-footer', $data);
     }
 
-    public function messagePage($id_receiver)
+    public function messagePage($id_receiver = 0)
     {
         $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
         $data['id'] = $data['user']['id'];
         $data['name'] = $this->session->userdata('name');
         $data['title'] = 'Send Message';
+        $data['list_user'] = $this->db->get('user')->result_array();
         $this->load->model('M_message');
         $data['id_kirim'] = $id_receiver;
-        $data['content'] = $this->M_message->getMessage($data['id'], $id_receiver);
+        if ($id_receiver != 0) {
+            $data['content'] = $this->M_message->getMessage($data['id'], $id_receiver);
+            $data['content'] = array_reverse($data['content']);
+        } else {
+            $data['content'] = NULL;
+        }
         $this->load->view('templates/header', $data);
         $this->load->view('templates/sidebar', $data);
         $this->load->view('home/messagePage', $data);
         $this->load->view('templates/message-footer', $data);
     }
 
-    public function insertMessage($id_kirim)
+    public function getMessageOld()
     {
+        $id = $this->input->post('id');
+        $id_receiver = $this->input->post('id_receiver');
+        $offset = $this->input->post('offset');
+        $this->load->model('M_message');
+        $data = $this->M_message->getMessageOld($id, $id_receiver, $offset);
+        for ($i = 0; $i < count($data); $i++) {
+            $data[$i]['created_at'] = human_shortdate_id($data[$i]['created_at'], 'datetime');
+        }
+        $data = array_reverse($data);
+        echo json_encode($data);
+    }
+
+    public function getMessageNew()
+    {
+        $id = $this->input->post('id');
+        $id_receiver = $this->input->post('id_receiver');
+        $offset = $this->input->post('offset');
+        $this->load->model('M_message');
+        $data = $this->M_message->getMessageNew($id, $id_receiver);
+        $data['created_at'] = human_shortdate_id($data['created_at'], 'datetime');
+        $data = array_reverse($data);
+        $count = $this->M_message->totalUnreadMessage($id);
+        $response = [
+            'data' => $data,
+            'countUnread' => $count
+        ];
+        echo json_encode($response);
+    }
+
+    public function insertMessage()
+    {
+        $id_receiver = $this->input->post('id_receiver', true);
         $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
         $data['id'] = $data['user']['id'];
         $data['name'] = $this->session->userdata('name');
-        $data['id_kirim'] = $id_kirim;
         $data = [
             "content" => $this->input->post('content', true),
             "created_by" => $data['id'],
             "created_at" => now(),
-            "created_for" => $id_kirim
+            "created_for" => $id_receiver,
+            "is_read" => 0
         ];
         $this->db->insert('message', $data);
-        redirect(base_url('home/messagePage/5'));
     }
 
-    public function convertDate($result)
+    public function updateReadMessage()
     {
-        echo date("d-m-Y H:i:s", $result);
+        $id_receiver = $this->input->post('id_receiver', true);
+        $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
+        $data['id'] = $data['user']['id'];
+        $data['name'] = $this->session->userdata('name');
+        $dataKirim = [
+            "is_read" => 1
+        ];
+        $this->db->where('created_by', $id_receiver);
+        $this->db->where('created_for', $data['id']);
+        $this->db->update('message', $dataKirim);
     }
 
     public function getDataLog()

@@ -60,7 +60,7 @@
                     <b><a class="nav-link text-white py-3 px-3" href="<?= base_url('home/logPage') ?>">Data Log</a></b>
                 </li>
                 <li class="nav-item">
-                    <b><a class="nav-link text-white py-3 px-3" href="<?= base_url('home/messagePage/5') ?>">Send Message</a></b>
+                    <b><a class="nav-link text-white py-3 px-3" href="<?= base_url('home/messagePage') ?>">Send Message</a></b>
                 </li>
             </ul>
             <ul class="navbar-nav ml-auto">

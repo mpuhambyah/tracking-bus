@@ -65,10 +65,11 @@
         $(this).next('.custom-file-label').addClass("selected").html(fileName);
     });
 
+    let valEditor;
     ClassicEditor
         .create(document.querySelector('#content'))
         .then(editor => {
-
+            valEditor = editor;
         })
         .catch(error => {
             console.error(error);

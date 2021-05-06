@@ -8,21 +8,6 @@ function is_logged_in()
   }
 }
 
-function date_differ($start, $end)
-{
-  $start = new DateTime(date('Y-m-d', $start));
-  $end = new DateTime(date('Y-m-d', $end));
-  $diff = $start->diff($end)->days + 1;
-
-  if ($diff < 0) {
-    $diff = "Kadaluarsa";
-  } else {
-    $diff = $diff . " Hari";
-  }
-
-  return $diff;
-}
-
 function human_longdate_id($date)
 {
   $pecah = explode("-", date('d-m-Y', $date));
@@ -119,16 +104,7 @@ function human_shortdate_id($date, $type)
     return $pecah[0] . " " . $bulan_human . " " . $pecah[2];
   } else if ($type == 'datetime') {
     return $pecah[0] . " " . $bulan_human . " " . $pecah[2] . " " . $waktu[0] . ":" . $waktu[1];
+  } else if ($type == 'datetime_time') {
+    return $pecah[0] . " " . $bulan_human . " " . $pecah[2] . " " . $waktu[0] . ":" . $waktu[1] . ":" . $waktu[2];
   }
-}
-
-function get_user($nik)
-{
-  $ci = get_instance();
-
-  $user = $ci->db->get_where('karyawan', ['nik' => $nik])->row_array();
-  if (!$user) {
-    $user['nama'] = $nik;
-  }
-  return $user['nama'];
 }
