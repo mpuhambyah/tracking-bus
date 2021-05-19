@@ -1,0 +1,121 @@
+.panelbus {
+	color: black;
+}
+
+.panelbus h4 {
+	color: #4e73df;
+	font-weight: 600;
+}
+
+.container-fluid {
+	padding-left: 12px;
+	padding-right: 12px;
+}
+
+.navigation {
+	background-color: whitesmoke;
+	padding: 10px 10px;
+	border-radius: 10px;
+}
+
+.navigation i {
+	padding: 10px 10px;
+	cursor: pointer;
+}
+
+.navigation i.aktif {
+	color: rgb(241, 241, 241);
+	background-color: #798eff;
+	border-radius: 5px;
+}
+
+.side-data {
+	background-color: aliceblue;
+}
+
+.col-9 {
+	padding-left: 30px !important;
+	padding-right: 80px !important;
+}
+
+.col-8 {
+	padding-left: 68px;
+}
+
+.col-8 table td {
+	padding: 15px 12px;
+	color: rgb(80, 80, 80);
+}
+
+table td p {
+	margin-bottom: 0px;
+}
+
+.table td,
+.table th {
+	border-top: 0 !important;
+}
+.table td.tab-left {
+	border-bottom-left-radius: 15px;
+	border-top-left-radius: 15px;
+}
+
+.table td.tab-right {
+	border-bottom-right-radius: 15px;
+	border-top-right-radius: 15px;
+}
+
+.ikon-baterai {
+	width: 100%;
+	font-size: 100px;
+}
+
+.side-data table td {
+	padding-right: 0px;
+	padding-bottom: 0px;
+}
+
+.side-data .table-kondisi td {
+	padding-right: 0px;
+	padding-bottom: 0px;
+}
+
+.side-data .table-kondisi td i {
+	font-size: 10px;
+	padding: 5px;
+	background-color: #798eff;
+	color: aliceblue;
+	border-radius: 3px;
+}
+
+.side-data .table-kondisi .text-kondisi {
+	padding-bottom: 10px;
+}
+
+.side-data .table-kondisi .text-kondisi h6 {
+	color: black;
+	color: rgb(68, 68, 68);
+}
+
+.side-data .table-kondisi .text-kondisi p {
+	font-size: 14px;
+	color: rgb(131, 131, 131);
+}
+
+.side-data .table.table-kondisi td.text-kondisi {
+	border-bottom: 1px solid rgb(182, 182, 182) !important;
+}
+
+.side-data .bat-kon {
+	padding: 5px 10px;
+}
+
+.mid-data .show-data h3 {
+	font-size: 60px;
+}
+.mid-data .show-data span {
+	color: whitesmoke;
+	padding: 5px 5px;
+	background-color: #516afd;
+	border-radius: 5px;
+}

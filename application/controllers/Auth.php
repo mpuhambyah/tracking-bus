@@ -35,7 +35,6 @@ class Auth extends CI_Controller
         $email = $this->input->post('email');
         $password = $this->input->post('password');
 
-        #query data select * from user where 'nrp'='$nrp'
         $user = $this->db->get_where('user', ['email' => $email])->row_array();
 
         #jika data user ditemukan
@@ -52,9 +51,27 @@ class Auth extends CI_Controller
                         'id' => $user['id']
                     ];
 
-                    #memasukkan data di atas ke session
-                    $this->session->set_userdata($data);
-                    redirect(base_url('home'));
+                    if ($user['role_id'] == 2) {
+                        $data = [
+                            'name' => $user['name'],
+                            'email' => $user['email'],
+                            'role_id' => $user['role_id'],
+                            'id' => $user['id']
+                        ];
+                        #memasukkan data di atas ke session
+                        $this->session->set_userdata($data);
+                        redirect(base_url('home'));
+                    } elseif ($user['role_id'] == 1) {
+                        $data = [
+                            'name' => $user['name'],
+                            'email' => $user['email'],
+                            'role_id' => $user['role_id'],
+                            'id' => $user['id']
+                        ];
+                        #memasukkan data di atas ke session
+                        $this->session->set_userdata($data);
+                        redirect(base_url('panelbus'));
+                    }
 
                     #jika password salah
                 } else {

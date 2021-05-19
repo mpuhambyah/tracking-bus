@@ -8,6 +8,10 @@ class Home extends CI_Controller
         parent::__construct();
         if (!$this->session->userdata('email')) {
             redirect(base_url('auth'));
+        } else {
+            if ($this->session->userdata('role_id') != 2) {
+                redirect(base_url('panelbus'));
+            }
         }
     }
 

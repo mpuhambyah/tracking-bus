@@ -17,58 +17,55 @@
         <div class="card-body">
             <div class="table-responsive">
                 <div class="row mx-1">
-                    <?= $this->session->flashdata('message'); ?>
+                    <?= $this->session->flashdata('message-bus'); ?>
                 </div>
                 <?php if (empty($list)) { ?>
-                <div class="alert alert-danger" role="alert">
-                    Data not found!
-                </div>
+                    <div class="alert alert-danger" role="alert">
+                        Data not found!
+                    </div>
                 <?php } else { ?>
-                <table class="table table-hover" id="dataTable" width="100%" cellspacing="0">
-                    <thead>
-                        <tr>
-                            <th scope="col">#</th>
-                            <th scope="col">Image</th>
-                            <th scope="col">Name</th>
-                            <th scope="col">Description</th>
-                            <th scope="col">Action</th>
-                        </tr>
-                    </thead>
-                    <tfoot>
-                        <tr>
-                            <th scope="col">#</th>
-                            <th scope="col">Image</th>
-                            <th scope="col">Name</th>
-                            <th scope="col">Description</th>
-                            <th scope="col">Action</th>
-                        </tr>
-                    </tfoot>
-                    <tbody>
-                        <?php $i = 1;
+                    <table class="table table-hover" id="dataTable" width="100%" cellspacing="0">
+                        <thead>
+                            <tr>
+                                <th scope="col">#</th>
+                                <th scope="col">Image</th>
+                                <th scope="col">Name</th>
+                                <th scope="col">Description</th>
+                                <th scope="col">Action</th>
+                            </tr>
+                        </thead>
+                        <tfoot>
+                            <tr>
+                                <th scope="col">#</th>
+                                <th scope="col">Image</th>
+                                <th scope="col">Name</th>
+                                <th scope="col">Description</th>
+                                <th scope="col">Action</th>
+                            </tr>
+                        </tfoot>
+                        <tbody>
+                            <?php $i = 1;
                             foreach ($list as $l) :
                             ?>
-                        <tr>
-                            <th scope="row"><?= $i; ?></th>
-                            <td><img src="<?= base_url(); ?>assets/img/<?= $l['image']; ?>" alt="" style="width: 150px"
-                                    class="img-thumbnail"></td>
-                            <td><?= $l['name']; ?></td>
-                            <td><?= $l['description']; ?></td>
+                                <tr>
+                                    <th scope="row"><?= $i; ?></th>
+                                    <td><img src="<?= base_url(); ?>assets/img/<?= $l['image']; ?>" alt="" style="width: 150px" class="img-thumbnail"></td>
+                                    <td><?= $l['name']; ?></td>
+                                    <td><?= $l['description']; ?></td>
 
-                            <td>
-                                <a href=" <?= base_url('admin/edit/') . $l['id']; ?>" class="btn btn-info tombolEditBus"
-                                    data-id="<?= $l['id']; ?>" data-toggle="modal" data-target="#UserEdit">
-                                    <i class="fas fa-pencil-alt"></i>
-                                </a>
-                                <a href="<?= base_url('admin/delete/') . $l['id']; ?>"
-                                    onclick="return confirm('Yakin?');" class="btn btn-danger">
-                                    <i class="fas fa-trash "></i>
-                                </a>
-                            </td>
-                        </tr>
-                        <?php $i++;
+                                    <td>
+                                        <a href=" <?= base_url('admin/edit/') . $l['id']; ?>" class="btn btn-info tombolEditBus" data-id="<?= $l['id']; ?>" data-toggle="modal" data-target="#UserEdit">
+                                            <i class="fas fa-pencil-alt"></i>
+                                        </a>
+                                        <a href="<?= base_url('admin/delete/') . $l['id']; ?>" onclick="return confirm('Yakin?');" class="btn btn-danger">
+                                            <i class="fas fa-trash "></i>
+                                        </a>
+                                    </td>
+                                </tr>
+                            <?php $i++;
                             endforeach; ?>
-                    </tbody>
-                </table>
+                        </tbody>
+                    </table>
                 <?php } ?>
             </div>
         </div>
@@ -89,17 +86,32 @@
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
-            <?php echo form_open_multipart('admin');?>
+            <?php echo form_open_multipart('admin'); ?>
             <div class="modal-body">
                 <div class="form-group">
                     <label for="name">Nama Bus</label>
-                    <input type="text" class="form-control" name="name">
+                    <input type="text" class="form-control" name="name" id="name">
                     <?= form_error('name', '<small class="text-danger pl-3">', '</small>'); ?>
                 </div>
                 <div class="form-group">
                     <label for="email">Deskripsi</label>
                     <input type="text" class="form-control" name="description">
                     <?= form_error('description', '<small class="text-danger pl-3">', '</small>'); ?>
+                </div>
+                <div class="form-group">
+                    <label for="email">Email</label>
+                    <div class="input-group">
+                        <input type="text" class="form-control" name="email" id="email">
+                        <div class="input-group-prepend">
+                            <div class="input-group-text">@eb.its.ac.id</div>
+                        </div>
+                    </div>
+                    <?= form_error('email', '<small class="text-danger pl-3">', '</small>'); ?>
+                </div>
+                <div class="form-group">
+                    <label for="email">Password</label>
+                    <input type="password" class="form-control" name="password">
+                    <?= form_error('password', '<small class="text-danger pl-3">', '</small>'); ?>
                 </div>
                 <div class="form-group">
                     <label for="file">Image</label>
