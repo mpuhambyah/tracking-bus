@@ -97,11 +97,12 @@ $(document).ready(function () {
 			success: function (response) {
 				let countUnread = response.countUnread;
 				let data = response.data;
-				if (countUnread.length > 0) {
-					countUnread.forEach(function (data, i) {
+				countUnread.forEach(function (data, i) {
+					if (data.total > 0) {
+						data.total = parseInt(data.total);
 						$('#unread-message' + data.created_by).html(data.total);
-					});
-				}
+					}
+				});
 				if (data.created_by == id_receiver) {
 					html += `<div class="scrollContent mb-3 shadow-sm container" id="${data.id}">`;
 					html += '<div class="p-2">' + data.content + '</div>';
@@ -119,14 +120,7 @@ $(document).ready(function () {
 						htmlAlert += `<div class="alert alert-success" role="alert">`;
 						htmlAlert += `Pesan Masuk!`;
 						htmlAlert += `</div>`;
-						$('#message-alert').hide().html(htmlAlert).fadeIn(3000);
-						$('#message-alert').on('click', function () {
-							$('#message-alert').html("");
-							$("#messageBox").animate({
-								scrollTop: $('#messageBox>.col').height()
-							}, 5000);
-							htmlAlert = "";
-						});
+						$('#message-alert').hide().html(htmlAlert).fadeIn(1000);
 					}
 					if (data.created_by == id && data.created_for == id_receiver) {
 						$("#messageBox").animate({
@@ -137,6 +131,9 @@ $(document).ready(function () {
 				if ($('#messageBox').scrollTop() + $('#messageBox').height() + 1 >= $('#messageBox>.col').height()) {
 					updateRead();
 					$('#message-alert').html("");
+					countUnread.forEach(function (data, i) {
+						$('#unread-message' + data.created_by).html("");
+					});
 				}
 				htmlAlert = "";
 				html = "";
