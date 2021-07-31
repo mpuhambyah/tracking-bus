@@ -70,7 +70,7 @@ class Auth extends CI_Controller
                         ];
                         #memasukkan data di atas ke session
                         $this->session->set_userdata($data);
-                        redirect(base_url('panelbus'));
+                        redirect(base_url('home'));
                     }
 
                     #jika password salah
