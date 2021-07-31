@@ -43,7 +43,7 @@
                                     <h6>Engine Load</h6>
                                 </td>
                                 <td class="tab-right" style="width: 40%">
-                                    <p>8%</p>
+                                    <p id="engineLoad">8%</p>
                                 </td>
                             </tr>
                             <tr>
@@ -52,7 +52,7 @@
                                     <h6>Throttle Position</h6>
                                 </td>
                                 <td>
-                                    <p>9%</p>
+                                    <p id="throttlePosition">9%</p>
                                 </td>
                             </tr>
                             <tr>
@@ -61,16 +61,16 @@
                                     <h6>Distance</h6>
                                 </td>
                                 <td class="tab-right">
-                                    <p>20.000 Km</p>
+                                    <p id="distance">20.000 Km</p>
                                 </td>
                             </tr>
                             <tr>
                                 <td><i class="fas fa-circle" style="color: #a1afff;"></i></td>
                                 <td>
-                                    <h6>Elapsed</h6>
+                                    <h6>Heading</h6>
                                 </td>
                                 <td>
-                                    <p>01:22</p>
+                                    <p id="heading">100</p>
                                 </td>
                             </tr>
                         </tbody>
@@ -103,7 +103,7 @@
                                 <h6>GPS Position</h6>
                             </td>
                             <td class="tab-right" style="width: 40%">
-                                <p>7.123441, 123.012983</p>
+                                <p id="gpsPosition">7.123441, 123.012983</p>
                             </td>
                         </tr>
                         <tr>
@@ -112,7 +112,7 @@
                                 <h6>GPS Speed</h6>
                             </td>
                             <td>
-                                <p>20 Km/h</p>
+                                <p id="gpsSpeed">20 Km/h</p>
                             </td>
                         </tr>
                         <tr>
@@ -121,7 +121,7 @@
                                 <h6>GPS Alt</h6>
                             </td>
                             <td class="tab-right">
-                                <p>321 m</p>
+                                <p id="gpsAlt">321 m</p>
                             </td>
                         </tr>
                         <tr>
@@ -130,7 +130,7 @@
                                 <h6>GPS Sat</h6>
                             </td>
                             <td>
-                                <p>3</p>
+                                <p id="gpsSat">3</p>
                             </td>
                         </tr>
                     </table>
@@ -143,8 +143,8 @@
                     <!-- Card Body -->
                     <div class="card-body">
                         <div class="mr-2 text-center">
-                            <i class="fas fa-battery-full text-success ikon-baterai"></i>
-                            <h6>100%</h6>
+                            <i id="battery" class="fas fa-battery-full text-success ikon-baterai"></i>
+                            <h6 id="batteryState">100%</h6>
                         </div>
                     </div>
                 </div>
@@ -160,7 +160,7 @@
                                             <h6>Voltage</h6>
                                         </td>
                                         <td>
-                                            <p>5%</p>
+                                            <p id="voltage">5%</p>
                                         </td>
                                     </tr>
                                     <tr>
@@ -169,7 +169,7 @@
                                             <h6>State of Charge</h6>
                                         </td>
                                         <td>
-                                            <p>9%</p>
+                                            <p id="soc">9%</p>
                                         </td>
                                     </tr>
                                 </tbody>

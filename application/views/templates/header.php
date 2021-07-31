@@ -16,6 +16,7 @@
     <link href="<?= base_url(); ?>assets/css/css.css?v=2" type="text/css" rel="stylesheet">
     <link href="<?= base_url(); ?>assets/css/css_message.css?v=2" type="text/css" rel="stylesheet">
     <link href="<?= base_url(); ?>assets/vendor/datatables/dataTables.bootstrap4.min.css" type="text/css" rel="stylesheet">
+    <link href="<?= base_url(); ?>assets/css/panelbus.css" type="text/css" rel="stylesheet">
 
     <!-- CSS -->
     <link rel="stylesheet" href="<?= base_url('assets/leaflet/leaflet.css'); ?>" />

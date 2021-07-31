@@ -10,6 +10,7 @@ class GetJSON extends CI_Controller
         $id_bus = $file->id_bus;
         $speed = $file->speed;
         $heading = $file->heading;
+        $battery = $file->battery;
         $file = $file->coordinates;
         $longitude = $file[0];
         $latitude = $file[1];
@@ -19,7 +20,8 @@ class GetJSON extends CI_Controller
             'speed' => $speed,
             'longitude' => $longitude,
             'heading' => $heading,
-            'time' => now()
+            'time' => now(),
+            'battery' => $battery
         ];
         $this->db->insert('bus_location', $data);
     }
@@ -50,7 +52,7 @@ class GetJSON extends CI_Controller
         $data = $this->db->query('SELECT * FROM bus_location WHERE id IN (SELECT MAX(id) AS id FROM bus_location GROUP BY id_bus)')->result_array();
         $id_user = $this->session->userdata('id');
         $query = "SELECT user.bus_id FROM user WHERE user.id = $id_user";
-        $bus_id = $this->db->query($query)->result_array();
+        $bus_id = $this->db->query($query)->row_array();
         $role_id = $this->session->userdata('role_id');
         $new['BMS'] = [];
         foreach ($data as $d) {
@@ -61,7 +63,7 @@ class GetJSON extends CI_Controller
                 'long' => $d['longitude'],
                 'head' => $d['heading'],
                 'role_id' => $role_id,
-                'bus_id' => $bus_id
+                'bus_id' => $bus_id['bus_id']
             ];
         }
         echo json_encode($new);
@@ -76,6 +78,18 @@ class GetJSON extends CI_Controller
             $data['time_ago'] = $this->humanTiming($data['time']);
         }
         $data['time'] = date("d-m-Y H:i:s", $data['time']);
+
+        echo json_encode($data);
+    }
+
+    public function getDataUserBus()
+    {
+        $id_user = $this->session->userdata('id');
+        $query = "SELECT user.bus_id FROM user WHERE user.id = $id_user";
+        $bus_id = $this->db->query($query)->row_array();
+        $bus_id = $bus_id['bus_id'];
+        $query = "SELECT * FROM bus_location WHERE id_bus = $bus_id ORDER BY bus_location.id DESC";
+        $data = $this->db->query($query)->row_array();
 
         echo json_encode($data);
     }
