@@ -12,23 +12,13 @@ class PanelBus extends CI_Controller
             redirect(base_url('home'));
         };
     }
-
-    public function index()
-    {
-        $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
-        $data['name'] = $this->session->userdata('name');
-        $data['title'] = 'Dashboard';
-        $this->load->view('bus/panel-header', $data);
-        $this->load->view('home/index', $data);
-        $this->load->view('bus/panel-footer', $data);
-    }
-
     public function databus()
     {
         $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
         $data['name'] = $this->session->userdata('name');
-        $data['title'] = 'Data Bus';
-        $this->load->view('bus/panel-header', $data);
+        $data['title'] = 'Panel';
+        $data['role_id'] = $this->session->userdata('role_id');
+        $this->load->view('templates/header', $data);
         $this->load->view('bus/panel-bus', $data);
         $this->load->view('bus/panel-footer', $data);
     }
@@ -37,8 +27,9 @@ class PanelBus extends CI_Controller
     {
         $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
         $data['name'] = $this->session->userdata('name');
-        $data['title'] = 'Data Bus';
-        $this->load->view('bus/panel-header', $data);
+        $data['title'] = 'Panel';
+        $data['role_id'] = $this->session->userdata('role_id');
+        $this->load->view('templates/header', $data);
         $this->load->view('bus/panel-bus-v2', $data);
         $this->load->view('bus/panel-footer', $data);
     }

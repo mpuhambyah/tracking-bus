@@ -69,13 +69,12 @@ function setMarkers(data) {
 
 		markers[obj.id].on('click', function () {
 			console.log(obj.id);
-			console.log(id_prev);
+			// console.log(id_prev);
 			markers[obj.id].setIcon(busIconClicked);
 			if (id_prev) {
 				markers[id_prev].setIcon(busIcon);
 			}
 			if (id_prev == obj.id) {
-				console.log("oke");
 				markers[obj.id].setIcon(busIconClicked);
 			}
 			id_prev = obj.id;
@@ -127,6 +126,7 @@ setInterval(function () {
 				} else {
 					dataJson = response;
 					setMarkers(dataJson);
+					console.log(dataJson);
 				}
 			});
 		}

@@ -48,6 +48,10 @@ class GetJSON extends CI_Controller
     public function getData()
     {
         $data = $this->db->query('SELECT * FROM bus_location WHERE id IN (SELECT MAX(id) AS id FROM bus_location GROUP BY id_bus)')->result_array();
+        $id_user = $this->session->userdata('id');
+        $query = "SELECT user.bus_id FROM user WHERE user.id = $id_user";
+        $bus_id = $this->db->query($query)->result_array();
+        $role_id = $this->session->userdata('role_id');
         $new['BMS'] = [];
         foreach ($data as $d) {
             $new['BMS'][] = [
@@ -55,7 +59,9 @@ class GetJSON extends CI_Controller
                 'id' => $d['id_bus'],
                 'lat' => $d['latitude'],
                 'long' => $d['longitude'],
-                'head' => $d['heading']
+                'head' => $d['heading'],
+                'role_id' => $role_id,
+                'bus_id' => $bus_id
             ];
         }
         echo json_encode($new);

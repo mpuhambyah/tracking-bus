@@ -8,10 +8,6 @@ class Home extends CI_Controller
         parent::__construct();
         if (!$this->session->userdata('email')) {
             redirect(base_url('auth'));
-        } else {
-            if ($this->session->userdata('role_id') != 2) {
-                redirect(base_url('panelbus'));
-            }
         }
     }
 
@@ -19,6 +15,7 @@ class Home extends CI_Controller
     {
         $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
         $data['name'] = $this->session->userdata('name');
+        $data['role_id'] = $this->session->userdata('role_id');
         $data['title'] = 'Dashboard';
         $this->load->view('templates/header', $data);
         $this->load->view('templates/sidebar', $data);
@@ -30,6 +27,7 @@ class Home extends CI_Controller
     {
         $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
         $data['name'] = $this->session->userdata('name');
+        $data['role_id'] = $this->session->userdata('role_id');
         $data['title'] = 'Data Log';
         $this->load->view('templates/header', $data);
         $this->load->view('templates/sidebar', $data);
@@ -42,6 +40,7 @@ class Home extends CI_Controller
         $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
         $data['id'] = $data['user']['id'];
         $data['name'] = $this->session->userdata('name');
+        $data['role_id'] = $this->session->userdata('role_id');
         $data['title'] = 'Send Message';
         $data['list_user'] = $this->db->get('user')->result_array();
         $this->load->model('M_message');
@@ -95,6 +94,7 @@ class Home extends CI_Controller
         $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
         $data['id'] = $data['user']['id'];
         $data['name'] = $this->session->userdata('name');
+        $data['role_id'] = $this->session->userdata('role_id');
         $data = [
             "content" => $this->input->post('content', true),
             "created_by" => $data['id'],
@@ -111,6 +111,7 @@ class Home extends CI_Controller
         $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
         $data['id'] = $data['user']['id'];
         $data['name'] = $this->session->userdata('name');
+        $data['role_id'] = $this->session->userdata('role_id');
         $dataKirim = [
             "is_read" => 1
         ];
@@ -132,6 +133,7 @@ class Home extends CI_Controller
     {
         $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
         $data['name'] = $this->session->userdata('name');
+        $data['role_id'] = $this->session->userdata('role_id');
         $data['title'] = 'History';
         $data['list_buses'] = $this->db->get('buses')->result_array();
         $this->load->view('templates/header', $data);

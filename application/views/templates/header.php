@@ -22,6 +22,9 @@
 
     <script src="<?= base_url('assets/leaflet/leaflet.js'); ?>"></script>
 
+    <script src="https://unpkg.com/chart.js@2.8.0/dist/Chart.bundle.js"></script>
+    <script src="https://unpkg.com/chartjs-gauge@0.3.0/dist/chartjs-gauge.js"></script>
+
     <link rel="icon" href="<?= base_url() ?>/assets/img/logo-its.png" type="image/gif">
 
     <title><?= $title ?></title>
@@ -62,6 +65,11 @@
                 <li class="nav-item">
                     <b><a class="nav-link text-white py-3 px-3" href="<?= base_url('home/messagePage') ?>">Send Message</a></b>
                 </li>
+                <?php if ($role_id == 1) { ?>
+                    <li class="nav-item">
+                        <b><a class="nav-link text-white py-3 px-3" href="<?= base_url('panelbus/databus') ?>">Panel</a></b>
+                    </li>
+                <?php } ?>
             </ul>
             <ul class="navbar-nav ml-auto">
                 <li class="nav-item">
