@@ -1,7 +1,7 @@
 <?php
 defined('BASEPATH') or exit('No direct script access allowed');
 
-class PanelBus extends CI_Controller
+class Panelbus extends CI_Controller
 {
     public function __construct()
     {
