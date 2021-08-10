@@ -9,8 +9,6 @@ var map = L.map('map', {
 });
 
 
-
-
 var markers = {};
 var polyline = {};
 let latlng_polyline = [];
@@ -37,19 +35,7 @@ var busIconClicked = L.icon({
 	iconUrl: base + '/assets/img/marker-busClicked.png',
 	iconSize: [38, 95], // size of the icon
 });
-
-var busIconClicked = L.icon({
-	iconUrl: base + '/assets/img/marker-busClicked.png',
-	iconSize: [38, 95], // size of the icon
-});
-
-var busIconUserBus = L.icon({
-	iconUrl: base + '/assets/img/marker-busUser.png',
-	iconSize: [38, 95], // size of the icon
-});
-
 let id_prev = 0;
-
 
 function setMarkers(data) {
 	data.BMS.forEach(function (obj) {
@@ -68,13 +54,6 @@ function setMarkers(data) {
 			markers[obj.id].setRotationAngle(obj.head);
 		}
 
-		if (obj.role_id == 1) {
-			if (typeof markers[obj.bus_id] !== 'undefined') {
-				markers[obj.bus_id].setIcon(busIconUserBus);
-			}
-			markers[obj.bus_id].fire('click');
-		}
-
 		$button.addEventListener('click', (e) => {
 			e.preventDefault();
 			markers[obj.id].setIcon(busIcon);
@@ -84,23 +63,19 @@ function setMarkers(data) {
 
 		map.on('click', function () {
 			markers[obj.id].setIcon(busIcon);
-			markers[obj.bus_id].setIcon(busIconUserBus);
 			$('#wrapper').addClass('toggled');
 			clearInterval(datawrapper);
 		});
 
 		markers[obj.id].on('click', function () {
+			console.log(obj.id);
+			console.log(id_prev);
+			markers[obj.id].setIcon(busIconClicked);
 			if (id_prev) {
 				markers[id_prev].setIcon(busIcon);
-				markers[obj.bus_id].setIcon(busIconUserBus);
 			}
 			if (id_prev == obj.id) {
-				markers[obj.id].setIcon(busIconClicked);
-				markers[obj.bus_id].setIcon(busIconUserBus);
-			}
-			if (obj.id == obj.bus_id) {
-				markers[obj.bus_id].setIcon(busIconUserBus);
-			} else {
+				console.log("oke");
 				markers[obj.id].setIcon(busIconClicked);
 			}
 			id_prev = obj.id;
@@ -122,15 +97,16 @@ function setMarkers(data) {
 						$('#location').html(data.latitude + ', ' + data.longitude);
 						$('#time').html(data.time);
 						$('#time_ago').html(data.time_ago);
-						map.flyTo([data.latitude, data.longitude], 18, {
-							animate: true,
-							duration: 1
-						});
 					}
 				});
 			}, 500);
+			map.flyTo([obj.lat, obj.long], 18, {
+				animate: true,
+				duration: 5
+			});
 		});
 	});
+
 }
 
 let dataJson;
@@ -146,12 +122,11 @@ setInterval(function () {
 					if (data.id_data != dataJson.BMS[i].id_data) {
 						dataJson = response;
 						setMarkers(dataJson);
-						// console.log(dataJson);
+						console.log(dataJson);
 					}
 				} else {
 					dataJson = response;
 					setMarkers(dataJson);
-					// console.log(dataJson);
 				}
 			});
 		}
