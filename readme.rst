@@ -1,4 +1,4 @@
-#Tracking Bus
+# Tracking Bus
 
 Website yang digunakan untuk mendapatkan dan menampilkan data lokasi (serta data lainnya) dari bus listrik secara _realtime_. Ada beberapa fitur yang terdapat pada website antara lain :
 
@@ -17,7 +17,7 @@ Website yang digunakan untuk mendapatkan dan menampilkan data lokasi (serta data
 
 Website bisa di akses di link berikut ini [Tracking Bus](https://riset.its.ac.id/electricbus/)
 
-####Konfigurasi website
+#### Konfigurasi website
 
 - Codeigniter 4 Framework
 - PHP 7.2 or Higher
